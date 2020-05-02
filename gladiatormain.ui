@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Gladiatormain</class>
+ <widget class="QDialog" name="Gladiatormain">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1920</width>
+    <height>1080</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">border-image: url(:/images/images/Arena .jpg);</string>
+  </property>
+  <widget class="qrightclickbutton" name="btn_card1">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>640</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/Blaues Team Bounty Hunter.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="qrightclickbutton" name="btn_card2">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>640</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/Blaues Team Guardian.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="qrightclickbutton" name="btn_card3">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>640</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/Blaues Team Vikinger.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="qrightclickbutton" name="btn_card4">
+   <property name="geometry">
+    <rect>
+     <x>820</x>
+     <y>640</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/Blaues Team King Arthur.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="qrightclickbutton" name="btn_card5">
+   <property name="geometry">
+    <rect>
+     <x>1050</x>
+     <y>640</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/Blaues Team God Of Nature.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="qrightclickbutton" name="btn_card6">
+   <property name="geometry">
+    <rect>
+     <x>1280</x>
+     <y>640</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/Blaues Team Mechaknight.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="qrightclickbutton" name="btn_card7">
+   <property name="geometry">
+    <rect>
+     <x>1510</x>
+     <y>640</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/Blaues Team Robin Hood.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget_test">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>440</y>
+     <width>471</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/white.png);</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_backside_1">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>170</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Roter Kartenrücken.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_backside_2">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>170</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Roter Kartenrücken.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_backside_3">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>170</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Roter Kartenrücken.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_backside_4">
+   <property name="geometry">
+    <rect>
+     <x>820</x>
+     <y>170</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Roter Kartenrücken.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_backside_5">
+   <property name="geometry">
+    <rect>
+     <x>1050</x>
+     <y>170</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Roter Kartenrücken.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_backside_6">
+   <property name="geometry">
+    <rect>
+     <x>1280</x>
+     <y>170</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Roter Kartenrücken.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_backside_7">
+   <property name="geometry">
+    <rect>
+     <x>1510</x>
+     <y>170</y>
+     <width>170</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Roter Kartenrücken.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_Rematch">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>470</y>
+     <width>191</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/white.png);</string>
+   </property>
+   <property name="text">
+    <string>Rematch</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_Close">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>470</y>
+     <width>191</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/images/images/white.png);</string>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_Count">
+   <property name="geometry">
+    <rect>
+     <x>1680</x>
+     <y>460</y>
+     <width>131</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>72</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;</string>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::RichText</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_BlueHPBar">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>910</y>
+     <width>1231</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Hintergrund Blau.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_RedHPBar">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>-130</y>
+     <width>1231</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(85, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Hintergrund Rot.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_CountBackground">
+   <property name="geometry">
+    <rect>
+     <x>1380</x>
+     <y>460</y>
+     <width>441</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/Grau.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_Round">
+   <property name="geometry">
+    <rect>
+     <x>1410</x>
+     <y>460</y>
+     <width>261</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>48</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>ROUND:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_BlueHP1">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>940</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_blue.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_BlueHP2">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>940</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_blue.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_BlueHP3">
+   <property name="geometry">
+    <rect>
+     <x>870</x>
+     <y>940</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_blue.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_BlueHP4">
+   <property name="geometry">
+    <rect>
+     <x>1000</x>
+     <y>940</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_blue.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_BlueHP5">
+   <property name="geometry">
+    <rect>
+     <x>1130</x>
+     <y>940</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_blue.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_BlueHP6">
+   <property name="geometry">
+    <rect>
+     <x>1260</x>
+     <y>940</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_blue.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_BlueHP7">
+   <property name="geometry">
+    <rect>
+     <x>1390</x>
+     <y>940</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_blue.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_RedHP2">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>30</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_red.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_RedHP1">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>30</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_red.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_RedHP7">
+   <property name="geometry">
+    <rect>
+     <x>1390</x>
+     <y>30</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_red.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_RedHP4">
+   <property name="geometry">
+    <rect>
+     <x>1000</x>
+     <y>30</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_red.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_RedHP5">
+   <property name="geometry">
+    <rect>
+     <x>1130</x>
+     <y>30</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_red.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_RedHP3">
+   <property name="geometry">
+    <rect>
+     <x>870</x>
+     <y>30</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_red.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_RedHP6">
+   <property name="geometry">
+    <rect>
+     <x>1260</x>
+     <y>30</y>
+     <width>101</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/images/images/heart_red.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_Username">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>960</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_Player">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>920</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Spieler:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_Wins">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>1000</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Wins:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_WinCount">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>1000</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_Loses">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>1040</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Loses:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbl_LoseCount">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>1040</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>btn_card1</zorder>
+  <zorder>btn_card2</zorder>
+  <zorder>btn_card3</zorder>
+  <zorder>btn_card4</zorder>
+  <zorder>btn_card5</zorder>
+  <zorder>btn_card6</zorder>
+  <zorder>btn_card7</zorder>
+  <zorder>listWidget_test</zorder>
+  <zorder>lbl_backside_1</zorder>
+  <zorder>lbl_backside_2</zorder>
+  <zorder>lbl_backside_3</zorder>
+  <zorder>lbl_backside_4</zorder>
+  <zorder>lbl_backside_5</zorder>
+  <zorder>lbl_backside_6</zorder>
+  <zorder>lbl_backside_7</zorder>
+  <zorder>btn_Rematch</zorder>
+  <zorder>btn_Close</zorder>
+  <zorder>lbl_BlueHPBar</zorder>
+  <zorder>lbl_RedHPBar</zorder>
+  <zorder>lbl_CountBackground</zorder>
+  <zorder>lbl_Count</zorder>
+  <zorder>lbl_Round</zorder>
+  <zorder>lbl_BlueHP1</zorder>
+  <zorder>lbl_BlueHP2</zorder>
+  <zorder>lbl_BlueHP3</zorder>
+  <zorder>lbl_BlueHP4</zorder>
+  <zorder>lbl_BlueHP5</zorder>
+  <zorder>lbl_BlueHP6</zorder>
+  <zorder>lbl_BlueHP7</zorder>
+  <zorder>lbl_RedHP2</zorder>
+  <zorder>lbl_RedHP1</zorder>
+  <zorder>lbl_RedHP7</zorder>
+  <zorder>lbl_RedHP4</zorder>
+  <zorder>lbl_RedHP5</zorder>
+  <zorder>lbl_RedHP3</zorder>
+  <zorder>lbl_RedHP6</zorder>
+  <zorder>lbl_Username</zorder>
+  <zorder>lbl_Player</zorder>
+  <zorder>lbl_Wins</zorder>
+  <zorder>lbl_WinCount</zorder>
+  <zorder>lbl_Loses</zorder>
+  <zorder>lbl_LoseCount</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>qrightclickbutton</class>
+   <extends>QPushButton</extends>
+   <header>qrightclickbutton.h</header>
+   <slots>
+    <signal>rightClicked()</signal>
+    <slot>onRightClicked()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

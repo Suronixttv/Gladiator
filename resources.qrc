@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/Arena .jpg</file>
+        <file>images/Blauer Kartenrücken.png</file>
+        <file>images/Blaues Team Bounty Hunter.png</file>
+        <file>images/Blaues Team God Of Nature.png</file>
+        <file>images/Blaues Team Guardian.png</file>
+        <file>images/Blaues Team King Arthur.png</file>
+        <file>images/Blaues Team Mechaknight.png</file>
+        <file>images/Blaues Team Robin Hood.png</file>
+        <file>images/Blaues Team Vikinger.png</file>
+        <file>images/Roter Kartenrücken.png</file>
+        <file>images/Rotes Team Bounty Hunter.png</file>
+        <file>images/Rotes Team God Of Nature.png</file>
+        <file>images/Rotes Team Guardian.png</file>
+        <file>images/Rotes Team King Arthur.png</file>
+        <file>images/Rotes Team Mechaknight.png</file>
+        <file>images/Rotes Team Robin Hood.png</file>
+        <file>images/Rotes Team Vikinger.png</file>
+        <file>images/white.png</file>
+        <file>images/Grau.png</file>
+        <file>images/heart_blue.png</file>
+        <file>images/heart_grey.png</file>
+        <file>images/heart_red.png</file>
+        <file>images/Hintergrund Blau.png</file>
+        <file>images/Hintergrund Rot.png</file>
+    </qresource>
+</RCC>
