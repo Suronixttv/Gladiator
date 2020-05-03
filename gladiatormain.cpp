@@ -19,23 +19,18 @@ Gladiatormain::Gladiatormain(QWidget *parent) :
 
     ui->btn_Close->hide();
     ui->btn_Rematch->hide();
+    ui->lbl_BlueCard->hide();
+    ui->lbl_RedCard->hide();
+    ui->lbl_Versus->hide();
+    //-----------------------------//
 
-
+    //Label Hintergründe Transparent und Scalen der Bilder auf die Labels erlauben//
+    //----------------------------------------------------------------------------//
     ui->lbl_Count->setAttribute(Qt::WA_TranslucentBackground);
     ui->lbl_Round->setAttribute(Qt::WA_TranslucentBackground);
 
     ui->lbl_Username->setAttribute(Qt::WA_TranslucentBackground);
     ui->lbl_Player->setAttribute(Qt::WA_TranslucentBackground);
-    ui->lbl_Wins->setAttribute(Qt::WA_TranslucentBackground);
-    ui->lbl_WinCount->setAttribute(Qt::WA_TranslucentBackground);
-    ui->lbl_Loses->setAttribute(Qt::WA_TranslucentBackground);
-    ui->lbl_LoseCount->setAttribute(Qt::WA_TranslucentBackground);
-
-    ui->lbl_WinCount->setNum(game->getBluePlayerWins());
-    ui->lbl_LoseCount->setNum(game->getBluePlayerLoses());
-
-    ui->lbl_BlueHPBar->setScaledContents(true);
-    ui->lbl_RedHPBar->setScaledContents(true);
 
     ui->lbl_RedHPBar->setAttribute(Qt::WA_TranslucentBackground);
     ui->lbl_BlueHPBar->setAttribute(Qt::WA_TranslucentBackground);
@@ -56,6 +51,9 @@ Gladiatormain::Gladiatormain(QWidget *parent) :
     ui->lbl_RedHP6->setAttribute(Qt::WA_TranslucentBackground);
     ui->lbl_RedHP7->setAttribute(Qt::WA_TranslucentBackground);
 
+    ui->lbl_BlueHPBar->setScaledContents(true);
+    ui->lbl_RedHPBar->setScaledContents(true);
+
     ui->lbl_BlueHP1->setScaledContents(true);
     ui->lbl_BlueHP2->setScaledContents(true);
     ui->lbl_BlueHP3->setScaledContents(true);
@@ -72,6 +70,9 @@ Gladiatormain::Gladiatormain(QWidget *parent) :
     ui->lbl_RedHP6->setScaledContents(true);
     ui->lbl_RedHP7->setScaledContents(true);
 
+    ui->lbl_BlueCard->setScaledContents(true);
+    ui->lbl_RedCard->setScaledContents(true);
+    //----------------------------------------------------------------------------//
 
 }
 
@@ -89,63 +90,85 @@ void Gladiatormain::on_btn_card1_clicked()
     this->Counter();
     //-----------------------------//
 
-
+    //Setzen der Karten//
+    //-----------------------------//
     qDebug()<<"Karte 1 gespielt!";
     game->setBluePlayerAuswahl(1);
     game->KIauswahl();
-    qDebug()<<"Auswahl durchgeführt";
-    ui->listWidget_test->addItem(game->getKampfNamen());
-    qDebug()<<"KampfName Ausgegeben";
+    //-----------------------------//
+
+    //Anzeigen der kämpfenden Karten//
+    //---------------------------------------------//
+    this->BlueCardShow(1);
+    this->RedCardShow(game->getRedPlayerAuswahl());
+    //---------------------------------------------//
+
+    //Gewinner des Kampfes festlegen//
+    //---------------------------------------------------//
     int winner = game->KampfAuswahl();
     qDebug()<<"Gewinner festgelegt";
     QString winnercard = game->getCardName(winner);
     qDebug()<<"Gewinner Name gespeichert";
     ui->listWidget_test->addItem(winnercard + " Wins!");
     qDebug()<<"gewinner Ausgabe";
+    //---------------------------------------------------//
 
-
+    //Kampf//
+    //---------------------------------------------------//
     if(winner == 1){
-        qDebug()<<"Blue Player Win";
+
+        //Blau gewinnt, Auswahl von Rot wird gespeichert und anschließend gelöscht//
+        //-----------------------------------------------------------------------//
         int Verlierer = game->getRedPlayerAuswahl();
-        qDebug()<< Verlierer << "verliert";
         game->KICardsDelete(Verlierer);
         qDebug()<<"Löschen gelungen";
-        this->ChangeHeartsRed(game->getRedPlayerHP());
+        //-----------------------------------------------------------------------//
 
-        //Label hide//
-        //-----------------------------//
-        this->RedLabelHide(Verlierer);
-        //-----------------------------//
+
+        //HP anzeige wird aktualisiert und das entspechnde Label wird gehidet//
+        //-------------------------------------------------------------------//
+        this->ChangeHeartsRed(game->getRedPlayerHP());
+        QTimer::singleShot(4000, this, SLOT(RedLabelHide()));
+        //------------------------------------------------------------------//
 
     }else if(winner == 0){
-        qDebug()<<"Draw";
+        //SSH wird gestartet//
+        //------------------//
         ui->listWidget_test->addItem("Draw");
         sshgame->show();
-        qDebug()<<"SSH gesatartet";
+        //------------------//
 
     }else if(winner == game->getRedPlayerAuswahl()){
-        qDebug()<<"keine Karte gelöscht";
-        ui->btn_card1->hide();
-        this->ChangeHeartsBlue(game->getBluePlayerHP());
-    }
-    qDebug()<<"Ende der Gewinner If-Else";
 
+
+        //Blau verliert//
+        //-----------------------------//
+        QTimer::singleShot(4000, this, SLOT(BlueButtonHide()));
+        this->ChangeHeartsBlue(game->getBluePlayerHP());
+        //-----------------------------//
+
+    }
+    //---------------------------------------------------//
+
+    //Hp Abfrage
     if(game->getBluePlayerHP() == 0){
+
+        //Blau verliert
         ui->listWidget_test->addItem("Game Over Red Wins !");
         game->setWinner(2);
-        ui->lbl_LoseCount->setNum(game->getBluePlayerLoses());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
     }else if(game->getRedPlayerHP() == 0){
+        //Blau gewinnt
         ui->listWidget_test->addItem("Game Over Blue Wins!");
-        ui->lbl_WinCount->setNum(game->getBluePlayerWins());
-        qDebug()<<"Winner funktion gestartet";
         game->setWinner(1);
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
     }else{
+        //Ausgabe der HP
         QString Blue = QString::number(game->getBluePlayerHP());
         QString Red  = QString::number(game->getRedPlayerHP());
 
@@ -172,6 +195,17 @@ void Gladiatormain::on_btn_card2_clicked()
     qDebug()<<"Karte 2 gespielt!";
     game->setBluePlayerAuswahl(2);
     game->KIauswahl();
+
+    //BlueCardShow//
+    //-----------------------------//
+    this->BlueCardShow(2);
+    //-----------------------------//
+
+    //RedCardShow//
+    //-----------------------------//
+    this->RedCardShow(game->getRedPlayerAuswahl());
+    //-----------------------------//
+
     qDebug()<<"Auswahl durchgeführt";
     ui->listWidget_test->addItem(game->getKampfNamen());
     qDebug()<<"KampfName Ausgegeben";
@@ -192,7 +226,7 @@ void Gladiatormain::on_btn_card2_clicked()
 
         //Label hide//
         //-----------------------------//
-        this->RedLabelHide(Verlierer);
+        QTimer::singleShot(4000, this, SLOT(RedLabelHide()));
         //-----------------------------//
 
 
@@ -205,7 +239,12 @@ void Gladiatormain::on_btn_card2_clicked()
 
     }else if(winner == game->getRedPlayerAuswahl()){
         qDebug()<<"Keine Karte gelöscht";
-        ui->btn_card2->hide();
+
+        //Blue Button Hide//
+        //-----------------------------//
+        QTimer::singleShot(4000, this, SLOT(BlueButtonHide()));
+        //-----------------------------//
+
         this->ChangeHeartsBlue(game->getBluePlayerHP());
     }
 
@@ -216,14 +255,14 @@ void Gladiatormain::on_btn_card2_clicked()
     if(game->getBluePlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Red Wins !");
         game->setWinner(2);
-        ui->lbl_LoseCount->setNum(game->getBluePlayerLoses());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
     }else if(game->getRedPlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Blue Wins!");
         game->setWinner(1);
-        ui->lbl_WinCount->setNum(game->getBluePlayerWins());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
@@ -255,6 +294,17 @@ void Gladiatormain::on_btn_card3_clicked()
     qDebug()<<"Karte 3 gespielt!";
     game->setBluePlayerAuswahl(3);
     game->KIauswahl();
+
+    //BlueCardShow//
+    //-----------------------------//
+    this->BlueCardShow(3);
+    //-----------------------------//
+
+    //RedCardShow//
+    //-----------------------------//
+    this->RedCardShow(game->getRedPlayerAuswahl());
+    //-----------------------------//
+
     ui->listWidget_test->addItem(game->getKampfNamen());
     int winner = game->KampfAuswahl();
     QString winnercard = game->getCardName(winner);
@@ -269,7 +319,7 @@ void Gladiatormain::on_btn_card3_clicked()
 
         //Label hide//
         //-----------------------------//
-        this->RedLabelHide(Verlierer);
+        QTimer::singleShot(4000, this, SLOT(RedLabelHide()));
         //-----------------------------//
 
     }else if(winner == 0){
@@ -280,7 +330,12 @@ void Gladiatormain::on_btn_card3_clicked()
 
 
     }else if(winner == game->getRedPlayerAuswahl()){
-        ui->btn_card3->hide();
+
+        //Blue Button Hide//
+        //-----------------------------//
+        QTimer::singleShot(4000, this, SLOT(BlueButtonHide()));
+        //-----------------------------//
+
         this->ChangeHeartsBlue(game->getBluePlayerHP());
     }
 
@@ -291,7 +346,7 @@ void Gladiatormain::on_btn_card3_clicked()
     if(game->getBluePlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Red Wins !");
         game->setWinner(2);
-        ui->lbl_LoseCount->setNum(game->getBluePlayerLoses());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
@@ -299,7 +354,7 @@ void Gladiatormain::on_btn_card3_clicked()
 
         ui->listWidget_test->addItem("Game Over Blue Wins!");
         game->setWinner(1);
-        ui->lbl_WinCount->setNum(game->getBluePlayerWins());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
@@ -332,6 +387,17 @@ void Gladiatormain::on_btn_card4_clicked()
     qDebug()<<"Karte 4 gespielt!";
     game->setBluePlayerAuswahl(4);
     game->KIauswahl();
+
+    //BlueCardShow//
+    //-----------------------------//
+    this->BlueCardShow(4);
+    //-----------------------------//
+
+    //RedCardShow//
+    //-----------------------------//
+    this->RedCardShow(game->getRedPlayerAuswahl());
+    //-----------------------------//
+
     ui->listWidget_test->addItem(game->getKampfNamen());
     int winner = game->KampfAuswahl();
     QString winnercard = game->getCardName(winner);
@@ -347,7 +413,7 @@ void Gladiatormain::on_btn_card4_clicked()
 
         //Label hide//
         //-----------------------------//
-        this->RedLabelHide(Verlierer);
+        QTimer::singleShot(4000, this, SLOT(RedLabelHide()));
         //-----------------------------//
 
     }else if(winner == 0){
@@ -357,7 +423,12 @@ void Gladiatormain::on_btn_card4_clicked()
         qDebug()<<"SSH gesatartet";
 
     }else if(winner == game->getRedPlayerAuswahl()){
-        ui->btn_card4->hide();
+
+        //Blue Button Hide//
+        //-----------------------------//
+        QTimer::singleShot(4000, this, SLOT(BlueButtonHide()));
+        //-----------------------------//
+
         this->ChangeHeartsBlue(game->getBluePlayerHP());
     }
 
@@ -367,14 +438,14 @@ void Gladiatormain::on_btn_card4_clicked()
     if(game->getBluePlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Red Wins !");
         game->setWinner(2);
-        ui->lbl_LoseCount->setNum(game->getBluePlayerLoses());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
     }else if(game->getRedPlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Blue Wins!");
         game->setWinner(1);
-        ui->lbl_WinCount->setNum(game->getBluePlayerWins());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
@@ -404,9 +475,21 @@ void Gladiatormain::on_btn_card5_clicked()
     this->Counter();
     //-----------------------------//
 
+
     qDebug()<<"Karte 5 gespielt!";
     game->setBluePlayerAuswahl(5);
     game->KIauswahl();
+
+    //BlueCardShow//
+    //-----------------------------//
+    this->BlueCardShow(5);
+    //-----------------------------//
+
+    //RedCardShow//
+    //-----------------------------//
+    this->RedCardShow(game->getRedPlayerAuswahl());
+    //-----------------------------//
+
     ui->listWidget_test->addItem(game->getKampfNamen());
     int winner = game->KampfAuswahl();
     QString winnercard = game->getCardName(winner);
@@ -420,7 +503,7 @@ void Gladiatormain::on_btn_card5_clicked()
 
         //Label hide//
         //-----------------------------//
-        this->RedLabelHide(Verlierer);
+        QTimer::singleShot(4000, this, SLOT(RedLabelHide()));
         //-----------------------------//
 
     }else if(winner == 0){
@@ -430,7 +513,12 @@ void Gladiatormain::on_btn_card5_clicked()
         qDebug()<<"SSH gesatartet";
 
     }else if(winner == game->getRedPlayerAuswahl()){
-        ui->btn_card5->hide();
+
+        //Blue Button Hide//
+        //-----------------------------//
+        QTimer::singleShot(4000, this, SLOT(BlueButtonHide()));
+        //-----------------------------//
+
         this->ChangeHeartsBlue(game->getBluePlayerHP());
     }
 
@@ -441,14 +529,14 @@ void Gladiatormain::on_btn_card5_clicked()
     if(game->getBluePlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Red Wins !");
         game->setWinner(2);
-        ui->lbl_LoseCount->setNum(game->getBluePlayerLoses());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
     }else if(game->getRedPlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Blue Wins!");
         game->setWinner(1);
-        ui->lbl_WinCount->setNum(game->getBluePlayerWins());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
@@ -477,9 +565,21 @@ void Gladiatormain::on_btn_card6_clicked()
     this->Counter();
     //-----------------------------//
 
+
     qDebug()<<"Karte 6 gespielt!";
     game->setBluePlayerAuswahl(6);
     game->KIauswahl();
+
+    //BlueCardShow//
+    //-----------------------------//
+    this->BlueCardShow(6);
+    //-----------------------------//
+
+    //RedCardShow//
+    //-----------------------------//
+    this->RedCardShow(game->getRedPlayerAuswahl());
+    //-----------------------------//
+
     ui->listWidget_test->addItem(game->getKampfNamen());
     int winner = game->KampfAuswahl();
     QString winnercard = game->getCardName(winner);
@@ -492,9 +592,9 @@ void Gladiatormain::on_btn_card6_clicked()
         game->KICardsDelete(Verlierer);
         this->ChangeHeartsRed(game->getRedPlayerHP());
 
-        //Label hide//
+        //Red Label hide//
         //-----------------------------//
-        this->RedLabelHide(Verlierer);
+        QTimer::singleShot(4000, this, SLOT(RedLabelHide()));
         //-----------------------------//
 
 
@@ -507,7 +607,12 @@ void Gladiatormain::on_btn_card6_clicked()
 
 
     }else if(winner == game->getRedPlayerAuswahl()){
-        ui->btn_card6->hide();
+
+        //Blue Button Hide//
+        //-----------------------------//
+        QTimer::singleShot(4000, this, SLOT(BlueButtonHide()));
+        //-----------------------------//
+
         this->ChangeHeartsBlue(game->getBluePlayerHP());
         qDebug()<<"Ende der Gewinner If-Else";
 
@@ -515,14 +620,14 @@ void Gladiatormain::on_btn_card6_clicked()
     }if(game->getBluePlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Red Wins !");
         game->setWinner(2);
-        ui->lbl_LoseCount->setNum(game->getBluePlayerLoses());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
     }else if(game->getRedPlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Blue Wins!");
         game->setWinner(1);
-        ui->lbl_WinCount->setNum(game->getBluePlayerWins());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
@@ -550,9 +655,21 @@ void Gladiatormain::on_btn_card7_clicked()
     this->Counter();
     //-----------------------------//
 
+
     qDebug()<<"Karte 7 gespielt!";
     game->setBluePlayerAuswahl(7);
     game->KIauswahl();
+
+    //BlueCardShow//
+    //-----------------------------//
+    this->BlueCardShow(7);
+    //-----------------------------//
+
+    //RedCardShow//
+    //-----------------------------//
+    this->RedCardShow(game->getRedPlayerAuswahl());
+    //-----------------------------//
+
     qDebug()<<"Ki auswahl fertig";
     ui->listWidget_test->addItem(game->getKampfNamen());
     qDebug()<<"KampfName ausgegeben";
@@ -570,9 +687,9 @@ void Gladiatormain::on_btn_card7_clicked()
         game->KICardsDelete(Verlierer);
         this->ChangeHeartsRed(game->getRedPlayerHP());
 
-        //Label hide//
+        //Red Label hide//
         //-----------------------------//
-        this->RedLabelHide(Verlierer);
+        QTimer::singleShot(4000, this, SLOT(RedLabelHide()));
         //-----------------------------//
 
 
@@ -585,7 +702,12 @@ void Gladiatormain::on_btn_card7_clicked()
 
     }else if(winner == game->getRedPlayerAuswahl()){
         qDebug()<<"Ki Gewinnt";
-        ui->btn_card7->hide();
+
+        //Blue Button Hide//
+        //-----------------------------//
+        QTimer::singleShot(4000, this, SLOT(BlueButtonHide()));
+        //-----------------------------//
+
         this->ChangeHeartsBlue(game->getBluePlayerHP());
     }
 
@@ -596,14 +718,14 @@ void Gladiatormain::on_btn_card7_clicked()
     if(game->getBluePlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Red Wins !");
         game->setWinner(2);
-        ui->lbl_LoseCount->setNum(game->getBluePlayerLoses());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
     }else if(game->getRedPlayerHP() == 0){
         ui->listWidget_test->addItem("Game Over Blue Wins!");
         game->setWinner(1);
-        ui->lbl_WinCount->setNum(game->getBluePlayerWins());
+
         ui->btn_Close->show();
         ui->btn_Rematch->show();
 
@@ -646,44 +768,20 @@ void Gladiatormain::on_sshclosed(int SSHWinner){
         ui->listWidget_test->addItem(game->getCardName(Card_Blue) + "Wins");
         game->KICardsDelete(Card_Red);
         qDebug()<<"Löschen erfolgreich";
-        int verlierer = game->getRedPlayerAuswahl();
-        this->RedLabelHide(verlierer);
+
+        QTimer::singleShot(1000, this, SLOT(RedLabelHide()));
 
 
     }else if(SSHWinner==2) {
         qDebug()<<"Rot gewinnt SSH";
         ui->listWidget_test->addItem(game->getCardName(Card_Red) + "Wins");
 
-        switch (Card_Blue) {
+        //Blue Button Hide//
+        //-----------------------------//
+        QTimer::singleShot(1000, this, SLOT(BlueButtonHide()));
+        //-----------------------------//
 
-        case 1:
-            ui->btn_card1->hide();
-            break;
 
-        case 2:
-            ui->btn_card2->hide();
-            break;
-
-        case 3:
-            ui->btn_card3->hide();
-            break;
-
-        case 4:
-            ui->btn_card4->hide();
-            break;
-
-        case 5:
-            ui->btn_card5->hide();
-            break;
-
-        case 6:
-            ui->btn_card6->hide();
-            break;
-
-        case 7:
-            ui->btn_card7->hide();
-            break;
-        }
     }
 
 
@@ -763,8 +861,9 @@ void Gladiatormain::on_btn_Close_clicked()
 
 }
 
-void Gladiatormain::RedLabelHide(int RedCardHide){
+void Gladiatormain::RedLabelHide(/*int RedCardHide*/){
 
+    int RedCardHide = game->getRedPlayerAuswahl();
     if(RedCardHide == 8){
         ui->lbl_backside_1->hide();
 
@@ -786,6 +885,44 @@ void Gladiatormain::RedLabelHide(int RedCardHide){
     }else if(RedCardHide == 14){
         ui->lbl_backside_7->hide();
 
+    }
+
+}
+
+void Gladiatormain::BlueButtonHide(){
+
+    int BlueCardHide = game->getBluePlayerAuswahl();
+
+    switch (BlueCardHide) {
+
+    case 1:
+
+        ui->btn_card1->hide();
+        break;
+
+    case 2:
+        ui->btn_card2->hide();
+        break;
+
+    case 3:
+        ui->btn_card3->hide();
+        break;
+
+    case 4:
+        ui->btn_card4->hide();
+        break;
+
+    case 5:
+        ui->btn_card5->hide();
+        break;
+
+    case 6:
+        ui->btn_card6->hide();
+        break;
+
+    case 7:
+        ui->btn_card7->hide();
+        break;
     }
 
 }
@@ -875,6 +1012,193 @@ void Gladiatormain::setUsername(QString User){
     this->game->setBluePlayer(User);
     ui->lbl_Username->setText(this->Username);
 }
+
+
+void Gladiatormain::BlueCardShow(int BlueCard){
+    QPixmap CardBlue;
+
+    switch (BlueCard) {
+
+    case 1:
+        CardBlue.load(":/images/images/Blaues Team Bounty Hunter.png");
+        ui->lbl_BlueCard->setPixmap(CardBlue);
+        ui->lbl_BlueCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_BlueCard->show();
+        QTimer::singleShot(3000, this,  &Gladiatormain::BlueCardHide);
+        ui->lbl_Versus->setText("Versus");
+        //ui->lbl_Versus->setStyleSheet("font.pixelSize: 70");
+        ui->lbl_Versus->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_Versus->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::VersusHide);
+        break;
+
+    case 2:
+        CardBlue.load(":/images/images/Blaues Team Guardian.png");
+        ui->lbl_BlueCard->setPixmap(CardBlue);
+        ui->lbl_BlueCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_BlueCard->show();
+        QTimer::singleShot(3000, this,  &Gladiatormain::BlueCardHide);
+        ui->lbl_Versus->setText("Versus");
+        //ui->lbl_Versus->setStyleSheet("font.pixelSize: 70");
+        ui->lbl_Versus->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_Versus->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::VersusHide);
+        break;
+
+    case 3:
+        CardBlue.load(":/images/images/Blaues Team Vikinger.png");
+        ui->lbl_BlueCard->setPixmap(CardBlue);
+        ui->lbl_BlueCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_BlueCard->show();
+        QTimer::singleShot(3000, this,  &Gladiatormain::BlueCardHide);
+        ui->lbl_Versus->setText("Versus");
+        //ui->lbl_Versus->setStyleSheet("font.pixelSize: 70");
+        ui->lbl_Versus->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_Versus->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::VersusHide);
+        break;
+
+    case 4:
+        CardBlue.load(":/images/images/Blaues Team King Arthur.png");
+        ui->lbl_BlueCard->setPixmap(CardBlue);
+        ui->lbl_BlueCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_BlueCard->show();
+        QTimer::singleShot(3000, this,  &Gladiatormain::BlueCardHide);
+        ui->lbl_Versus->setText("Versus");
+        //ui->lbl_Versus->setStyleSheet("font.pixelSize: 70");
+        ui->lbl_Versus->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_Versus->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::VersusHide);
+        break;
+
+    case 5:
+        CardBlue.load(":/images/images/Blaues Team God Of Nature.png");
+        ui->lbl_BlueCard->setPixmap(CardBlue);
+        ui->lbl_BlueCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_BlueCard->show();
+        QTimer::singleShot(3000, this,  &Gladiatormain::BlueCardHide);
+        ui->lbl_Versus->setText("Versus");
+        //ui->lbl_Versus->setStyleSheet("font.pixelSize: 70");
+        ui->lbl_Versus->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_Versus->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::VersusHide);
+        break;
+
+    case 6:
+        CardBlue.load(":/images/images/Blaues Team Mechaknight.png");
+        ui->lbl_BlueCard->setPixmap(CardBlue);
+        ui->lbl_BlueCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_BlueCard->show();
+        QTimer::singleShot(3000, this,  &Gladiatormain::BlueCardHide);
+        ui->lbl_Versus->setText("Versus");
+        //ui->lbl_Versus->setStyleSheet("font.pixelSize: 70");
+        ui->lbl_Versus->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_Versus->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::VersusHide);
+        break;
+
+    case 7:
+        CardBlue.load(":/images/images/Blaues Team Robin Hood.png");
+        ui->lbl_BlueCard->setPixmap(CardBlue);
+        ui->lbl_BlueCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_BlueCard->show();
+        QTimer::singleShot(3000, this,  &Gladiatormain::BlueCardHide);
+        ui->lbl_Versus->setText("Versus");
+        //ui->lbl_Versus->setStyleSheet("font.pixelSize: 70");
+        ui->lbl_Versus->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_Versus->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::VersusHide);
+        break;
+
+    }
+}
+
+
+void Gladiatormain::RedCardShow(int RedCard){
+    QPixmap CardRed;
+
+    switch (RedCard) {
+
+    case 8:
+        CardRed.load(":/images/images/Rotes Team Bounty Hunter.png");
+        ui->lbl_RedCard->setPixmap(CardRed);
+        ui->lbl_RedCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_RedCard->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::RedCardHide);
+        break;
+
+    case 9:
+        CardRed.load(":/images/images/Rotes Team Guardian.png");
+        ui->lbl_RedCard->setPixmap(CardRed);
+        ui->lbl_RedCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_RedCard->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::RedCardHide);
+        break;
+
+    case 10:
+        CardRed.load(":/images/images/Rotes Team Vikinger.png");
+        ui->lbl_RedCard->setPixmap(CardRed);
+        ui->lbl_RedCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_RedCard->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::RedCardHide);
+        break;
+
+    case 11:
+        CardRed.load(":/images/images/Rotes Team King Arthur.png");
+        ui->lbl_RedCard->setPixmap(CardRed);
+        ui->lbl_RedCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_RedCard->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::RedCardHide);
+        break;
+
+    case 12:
+        CardRed.load(":/images/images/Rotes Team God Of Nature.png");
+        ui->lbl_RedCard->setPixmap(CardRed);
+        ui->lbl_RedCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_RedCard->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::RedCardHide);
+        break;
+
+    case 13:
+        CardRed.load(":/images/images/Rotes Team Mechaknight.png");
+        ui->lbl_RedCard->setPixmap(CardRed);
+        ui->lbl_RedCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_RedCard->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::RedCardHide);
+        break;
+
+    case 14:
+        CardRed.load(":/images/images/Rotes Team Robin Hood.png");
+        ui->lbl_RedCard->setPixmap(CardRed);
+        ui->lbl_RedCard->setAttribute(Qt::WA_TranslucentBackground);
+        ui->lbl_RedCard->show();
+        QTimer::singleShot(3000, this, &Gladiatormain::RedCardHide);
+        break;
+
+    }
+}
+
+
+void Gladiatormain::BlueCardHide(){
+
+    ui->lbl_BlueCard->hide();
+}
+
+
+void Gladiatormain::RedCardHide(){
+
+    ui->lbl_RedCard->hide();
+}
+
+
+void Gladiatormain::VersusHide(){
+
+    ui->lbl_Versus->hide();
+}
+
+
+
+
 
 
 
