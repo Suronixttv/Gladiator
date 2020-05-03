@@ -6,6 +6,9 @@
 #include "frmssh.h"
 #include "gladiatorgame.h"
 #include "cardsfrm.h"
+#include <qtimer.h>
+
+
 
 namespace Ui {
 class Gladiatormain;
@@ -18,11 +21,16 @@ class Gladiatormain : public QDialog
 public:
     explicit Gladiatormain(QWidget *parent = nullptr);
     ~Gladiatormain();
-    void RedLabelHide(int RedCardHide);
+    //void RedLabelHide(int RedCardHide);
     void Counter();
     void ChangeHeartsRed(int redHearts);
     void ChangeHeartsBlue(int blueHearts);
     void setUsername(QString User);
+    void BlueCardShow(int BlueCard);
+    void RedCardShow(int RedCard);
+    void BlueCardHide();
+    void RedCardHide();
+    void VersusHide();
 
 private slots:
     void on_btn_card1_rightClicked();
@@ -59,6 +67,9 @@ private slots:
 
     void on_btn_Close_clicked();
 
+    void RedLabelHide();
+
+    void BlueButtonHide();
 
 
 private:
@@ -67,6 +78,7 @@ private:
     FrmSSH *sshgame;
     Cardsfrm *CardsFrm = new Cardsfrm;
     QString Username;
+
  };
 
 #endif // GLADIATORMAIN_H
