@@ -13,14 +13,12 @@ void Player::setName(QString Username){
 
 void Player::setWins(int W){
 
-    qDebug()<<"Player::Wins W = " + QString::number(W) + "Name:" + this->Name;
     gladiatordb.setWins(W,this->Name);
 
 }
 
 void Player::setLoses(int L){
 
-    qDebug()<<"Player::setLoses L = " + QString::number(L) + "Name:" + this->Name;
     gladiatordb.setLoses(L,this->Name);
 
 
@@ -40,7 +38,6 @@ void Player::setAuswahl(int i){
 
 int Player::getWins(){
 
-    qDebug("In player.cpp");
     this->Wins = gladiatordb.getWins(this->Name);
 
     return(this->Wins);
@@ -65,10 +62,5 @@ int Player::getAuswahl(){
 
 
     return(this->Auswahl);
-}
-
-QString Player::getUsername(){
-
-    return(this->Name);
 }
 
