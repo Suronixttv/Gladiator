@@ -544,8 +544,7 @@ void gladiatorgame::setWinner(int i){
 
     qDebug()<<"Inside gewinner funktion";
     if(i == 1){
-        qDebug("i = 1");
-        int Wins =Blue_Player.getWins();
+        int Wins = Blue_Player.getWins();
         Blue_Player.setWins(Wins +1);
 
     }else if(i ==2){
