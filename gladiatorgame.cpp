@@ -542,13 +542,11 @@ void gladiatorgame::setSSHLoserHP(int w){
 
 void gladiatorgame::setWinner(int i){
 
-    qDebug()<<"Inside gewinner funktion";
     if(i == 1){
         int Wins = Blue_Player.getWins();
         Blue_Player.setWins(Wins +1);
 
     }else if(i ==2){
-        qDebug("i = 2");
         int Loses = Blue_Player.getLoses();
         Blue_Player.setLoses(Loses +1);
     }
@@ -557,7 +555,6 @@ void gladiatorgame::setWinner(int i){
 
 int gladiatorgame::getBluePlayerWins(){
 
-    qDebug()<<"Blue Player Wins" + QString::number(Blue_Player.getWins());
     return(Blue_Player.getWins());
 }
 
