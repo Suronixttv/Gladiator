@@ -14,7 +14,6 @@ public:
     void setHP(int hp);
     void setAuswahl(int i);
 
-    QString getUsername();
     int  getWins();
     int  getLoses();
     int  getHP();
