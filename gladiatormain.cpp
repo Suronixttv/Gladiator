@@ -6,10 +6,17 @@ Gladiatormain::Gladiatormain(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Gladiatormain)
 {
+    //Setup der Gui//
+    //Vorbereiten des Spieles//
+    //-----------------------------//
+
     ui->setupUi(this);
+
     this->sshgame = new FrmSSH;
     connect(sshgame,SIGNAL(on_FrmSSH_closed(int)),this,SLOT(on_sshclosed(int)));
+
     game->SetupGame();
+
     ui->btn_Close->hide();
     ui->btn_Rematch->hide();
 
