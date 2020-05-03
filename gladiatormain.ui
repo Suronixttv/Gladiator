@@ -732,78 +732,44 @@
     <string>Spieler:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="lbl_Wins">
+  <widget class="QLabel" name="lbl_BlueCard">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>1000</y>
-     <width>111</width>
-     <height>31</height>
+     <x>750</x>
+     <y>620</y>
+     <width>311</width>
+     <height>431</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>28</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Wins:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lbl_WinCount">
-   <property name="geometry">
-    <rect>
-     <x>430</x>
-     <y>1000</y>
-     <width>81</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>28</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
    </property>
    <property name="text">
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="lbl_Loses">
+  <widget class="QLabel" name="lbl_RedCard">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>1040</y>
-     <width>121</width>
-     <height>31</height>
+     <x>750</x>
+     <y>10</y>
+     <width>311</width>
+     <height>431</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>28</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
    </property>
    <property name="text">
-    <string>Loses:</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="lbl_LoseCount">
+  <widget class="QLabel" name="lbl_Versus">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>1040</y>
-     <width>71</width>
-     <height>31</height>
+     <x>790</x>
+     <y>460</y>
+     <width>231</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>28</pointsize>
+     <pointsize>48</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -850,10 +816,9 @@
   <zorder>lbl_RedHP6</zorder>
   <zorder>lbl_Username</zorder>
   <zorder>lbl_Player</zorder>
-  <zorder>lbl_Wins</zorder>
-  <zorder>lbl_WinCount</zorder>
-  <zorder>lbl_Loses</zorder>
-  <zorder>lbl_LoseCount</zorder>
+  <zorder>lbl_BlueCard</zorder>
+  <zorder>lbl_RedCard</zorder>
+  <zorder>lbl_Versus</zorder>
  </widget>
  <customwidgets>
   <customwidget>
