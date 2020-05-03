@@ -197,6 +197,7 @@ int Datenbank::getLoses(QString Name){
 
 }
 
+
 void Datenbank::Logout(){
 
     this->Username = "no";
