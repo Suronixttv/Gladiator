@@ -152,10 +152,10 @@ int Datenbank::getWins(QString Name){
 
     if(qry.exec()){
 
-            qry.first();
-            qDebug()<<"Wins i DB: " + qry.value(1).toString();
-            Wins = qry.value(1).toInt();
-             qDebug()<<"int Wins =" + QString::number(Wins);
+            int W = qry.record().indexOf("Wins");
+            Wins = qry.value(W).toInt();
+            qDebug()<<"Wins i DB: " + qry.value(W).toString();
+            qDebug()<<"int Wins =" + QString::number(Wins);
             this->connClose();
             qDebug()<<"Wins ausgelesen";
             qDebug()<<"Wins:" + QString::number(Wins);
@@ -170,6 +170,7 @@ int Datenbank::getWins(QString Name){
 
 }
 
+
 int Datenbank::getLoses(QString Name){
 
     qDebug()<<"Inside Db getLoses";
@@ -180,9 +181,9 @@ int Datenbank::getLoses(QString Name){
     qry.exec();
 
     if(qry.exec()){
-            //qry.first();
-            qDebug()<<"Loses in DB:" + qry.value(1).toString();
-            Loses = qry.value(1).toInt();
+            int L = qry.record().indexOf("Loses");
+            Loses = qry.value(L).toInt();
+            qDebug()<<"Loses in DB:" + qry.value(L).toString();
             qDebug()<<"int Loses =" + QString::number(Loses);
             this->connClose();
             qDebug()<<"Loses ausgelesen";
